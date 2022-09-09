@@ -1,13 +1,21 @@
 {
-	"name": "responselike",
+	"name": "@esm2cjs/responselike",
 	"version": "3.0.0",
-	"description": "A response-like object for mocking a Node.js HTTP response stream",
+	"description": "A response-like object for mocking a Node.js HTTP response stream. This is a fork of sindresorhus/responselike, but with CommonJS support.",
 	"license": "MIT",
-	"repository": "sindresorhus/responselike",
-	"funding": "https://github.com/sponsors/sindresorhus",
-	"author": "Luke Childs <lukechilds123@gmail.com> (https://lukechilds.co.uk)",
-	"type": "module",
-	"exports": "./index.js",
+	"repository": "esm2cjs/responselike",
+	"funding": "https://github.com/sponsors/AlCalzone",
+	"author": {
+		"name": "Dominic Griesel",
+		"email": "d.griesel@gmx.net"
+	},
+	"exports": {
+		".": {
+			"import": "./esm/index.js",
+			"require": "./cjs/index.js"
+		},
+		"./package.json": "./package.json"
+	},
 	"engines": {
 		"node": ">=14.16"
 	},
@@ -15,8 +23,8 @@
 		"test": "xo && ava && tsd"
 	},
 	"files": [
-		"index.js",
-		"index.d.ts"
+		"cjs/",
+		"esm/"
 	],
 	"keywords": [
 		"http",
@@ -28,12 +36,38 @@
 		"responselike"
 	],
 	"dependencies": {
-		"lowercase-keys": "^3.0.0"
+		"@esm2cjs/lowercase-keys": "^3.0.0"
 	},
 	"devDependencies": {
 		"ava": "^4.3.1",
 		"get-stream": "^6.0.1",
 		"tsd": "^0.22.0",
 		"xo": "^0.50.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"main": "cjs/index.js",
+	"module": "esm/index.js",
+	"types": "esm/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"esm/index.d.ts": [
+				"esm/index.d.ts"
+			],
+			"cjs/index.d.ts": [
+				"esm/index.d.ts"
+			],
+			"*": [
+				"esm/*"
+			]
+		}
+	},
+	"xo": {
+		"ignores": [
+			"cjs",
+			"**/*.test-d.ts",
+			"**/*.d.ts"
+		]
 	}
 }

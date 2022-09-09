@@ -1,8 +1,8 @@
 import {Buffer} from 'node:buffer';
 import test from 'ava';
-import lowercaseKeys from 'lowercase-keys';
+import lowercaseKeys from '@esm2cjs/lowercase-keys';
 import getStream from 'get-stream';
-import Response from './index.js';
+import Response from './esm/index.js';
 
 const statusCode = 200;
 const headers = {Foo: 'Bar'};

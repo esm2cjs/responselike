@@ -1,5 +1,5 @@
 import {Readable as ReadableStream} from 'node:stream';
-import lowercaseKeys from 'lowercase-keys';
+import lowercaseKeys from '@esm2cjs/lowercase-keys';
 
 export default class Response extends ReadableStream {
 	statusCode;
