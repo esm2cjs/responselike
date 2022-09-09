@@ -1,75 +1,52 @@
-# responselike
+# @esm2cjs/responselike
 
-> A response-like object for mocking a Node.js HTTP response stream
-
-Returns a streamable response object similar to a [Node.js HTTP response stream](https://nodejs.org/api/http.html#http_class_http_incomingmessage). Useful for formatting cached responses so they can be consumed by code expecting a real response.
+This is a fork of https://github.com/sindresorhus/responselike, but automatically patched to support ESM **and** CommonJS, unlike the original repository.
 
 ## Install
 
-```sh
-npm install responselike
+You can use an npm alias to install this package under the original name:
+
+```
+npm i responselike@npm:@esm2cjs/responselike
+```
+
+```jsonc
+// package.json
+"dependencies": {
+    "responselike": "npm:@esm2cjs/responselike"
+}
+```
+
+but `npm` might dedupe this incorrectly when other packages depend on the replaced package. If you can, prefer using the scoped package directly:
+
+```
+npm i @esm2cjs/responselike
+```
+
+```jsonc
+// package.json
+"dependencies": {
+    "@esm2cjs/responselike": "^ver.si.on"
+}
 ```
 
 ## Usage
 
 ```js
-import Response from 'responselike';
+// Using ESM import syntax
+import Response from "@esm2cjs/responselike";
 
-const response = new Response({
-	statusCode: 200,
-	headers: {
-		foo: 'bar'
-	},
-	body: Buffer.from('Hi!'),
-	url: 'https://example.com'
-});
-
-response.statusCode;
-// 200
-
-response.headers;
-// {foo: 'bar'}
-
-response.body;
-// <Buffer 48 69 21>
-
-response.url;
-// 'https://example.com'
-
-response.pipe(process.stdout);
-// 'Hi!'
+// Using CommonJS require()
+const Response = require("@esm2cjs/responselike").default;
 ```
 
-## API
+> **Note:**
+> Because the original module uses `export default`, you need to append `.default` to the `require()` call.
 
-### new Response(options?)
+For more details, please see the original [repository](https://github.com/sindresorhus/responselike).
 
-Returns a streamable response object similar to a [Node.js HTTP response stream](https://nodejs.org/api/http.html#http_class_http_incomingmessage).
+## Sponsoring
 
-#### options
+To support my efforts in maintaining the ESM/CommonJS hybrid, please sponsor [here](https://github.com/sponsors/AlCalzone).
 
-Type: `object`
-
-##### statusCode
-
-Type: `number`
-
-The HTTP response status code.
-
-##### headers
-
-Type: `object`
-
-The HTTP headers. Keys will be automatically lowercased.
-
-##### body
-
-Type: `Buffer`
-
-The response body. The Buffer contents will be streamable but is also exposed directly as `response.body`.
-
-##### url
-
-Type: `string`
-
-The request URL string.
+To support the original author of the module, please sponsor [here](https://github.com/sindresorhus/responselike).
